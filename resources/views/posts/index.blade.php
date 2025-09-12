@@ -11,7 +11,7 @@
 
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="{{Route('posts.index')}}">All Posts</a>
   </div>
 </nav>
 <a href="#" class="btn btn-success">Create Post</a>
@@ -34,7 +34,7 @@
             <td>{{$post['posted_by']}}</td>
             <td>{{$post['created_at']}}</td>
             <td colspan="3">
-                <a href = "/posts/{{$post['id']}}" class="btn btn-info">View</a>
+                <a href = "{{route('posts.show',['post'=>$post['id']])}}" class="btn btn-info">View</a>
                 <a href = "#" class="btn btn-primary">Edit</a>
                 <a href = "#" class="btn btn-danger">Delete</a>
             </td>

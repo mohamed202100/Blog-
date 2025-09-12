@@ -11,7 +11,7 @@
 
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="{{Route('posts.index')}}">All Posts</a>
   </div>
 </nav>
 <div class="card">
