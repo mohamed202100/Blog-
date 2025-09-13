@@ -11,4 +11,5 @@
     <p class="card-text">{{$post['description']}}</p>
   </div>
 </div>
+
 @endsection
