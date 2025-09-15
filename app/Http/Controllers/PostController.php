@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = [
-            ['id' => 1, 'title' => 'laravel', 'description' => 'This is description', 'posted_by' => 'ahmed', 'created_at' => '2022-11-09'],
-            ['id' => 2, 'title' => 'JS', 'description' => 'This is description', 'posted_by' => 'mona', 'created_at' => '2025-03-12'],
-        ];
+        $posts = Post::all();
         return view('posts.index', ['posts' => $posts]);
     }
     public function show($post)
