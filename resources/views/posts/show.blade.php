@@ -7,8 +7,9 @@
     Post Details
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{$post['title']}}</h5>
-    <p class="card-text">{{$post['description']}}</p>
+    <h5 class="card-title">{{$post->id}}</h5>
+    <h5 class="card-title">{{$post->title}}</h5>
+    <p class="card-text">{{$post->description}}</p>
   </div>
 </div>
 

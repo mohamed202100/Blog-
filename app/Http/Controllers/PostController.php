@@ -13,21 +13,29 @@ class PostController extends Controller
         $posts = Post::all();
         return view('posts.index', ['posts' => $posts]);
     }
-    public function show($post)
+    public function show($id)
     {
-        $post = ['id' => 1, 'title' => 'laravel', 'description' => 'This is description', 'posted_by' => 'ahmed', 'created_at' => '2022-11-09'];
-
+        $post = Post::find($id); // $post = Post::where('title','js')->first();->get() ==> get * matching
         return view('posts.show', [
             'post' => $post
         ]);
     }
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create',);
     }
 
-    public function store()
+    public function store() // store(Request $myRequestObject) then i use $myRequestObject
     {
-        return redirect()->route('posts.index');
+        $data = request()->all();
+
+        // Post::create([
+        //     'title' => $data['title'],
+        //     'description' => $data['description']
+        // ]);
+
+        Post::create($data); // accept available data in model fillable only[title,description]
+
+        return redirect()->route('posts.index', $data);
     }
 }
