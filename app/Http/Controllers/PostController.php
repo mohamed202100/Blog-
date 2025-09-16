@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -22,7 +23,9 @@ class PostController extends Controller
     }
     public function create()
     {
-        return view('posts.create',);
+        return view('posts.create', [
+            'users' => User::all()
+        ]);
     }
 
     public function store() // store(Request $myRequestObject) then i use $myRequestObject
