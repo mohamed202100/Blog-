@@ -32,16 +32,26 @@ class PostController extends Controller
         ]);
     }
 
-    public function store() // store(Request $myRequestObject) then i use $myRequestObject
+    public function store(Request $request) // store(Request $myRequestObject) then i use $myRequestObject
     {
-        $data = request()->all();
+        // $data = request()->all();
 
-        // Post::create([
-        //     'title' => $data['title'],
-        //     'description' => $data['description']
-        // ]);
+        // we can use our request ->make:request <name> and adding the message and rules
 
-        Post::create($data); // accept available data in model fillable only[title,description]
+        $request->validate([
+            "title" => ['required', 'min:3'],
+            "description" => ['required', 'min:5'],
+            "user_id" => ['required'],
+        ], [
+            "title.required" => 'watch out the title is required'
+        ]);
+        Post::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => $request->user_id
+        ]);
+
+        // Post::create($data); // accept available data in model fillable only[title,description]
 
         return redirect()->route('posts.index');
     }
@@ -49,14 +59,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        $user = User::find($post->user_id);
-        $user_name = $user->name;
         return view(
             'posts.edit',
             [
                 'post' => $post,
                 'users' => User::all(),
-                'user_name' => $user_name
             ]
         );
     }

@@ -11,13 +11,13 @@
   </div>
   <div class="mb-3">
     <label for="description" class="form-label">Description: </label>
-    <textarea  class="form-control" id="description" name="description">{{$post->description}}</textarea>
+    <textarea  class="form-control" id="description"  name="description">{{$post->description}}</textarea>
   </div>
   <div class="mb-3">
     <label for="user_id" class="form-label">Post Createor: </label>
-    <select name="user_id" id="user_id" class="form-control">
+    <select name="user_id" id="user_id" class="form-control" >
         @foreach ($users as $user)
-        <option  value={{$user->id}}>{{$user->name}}</option>
+        <option value={{$user->id}}>{{$user->name}}</option>
         @endforeach
     </select>
     </div>
