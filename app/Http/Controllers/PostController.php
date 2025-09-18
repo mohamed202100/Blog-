@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,19 +33,19 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(Request $request) // store(Request $myRequestObject) then i use $myRequestObject
+    public function store(StorePostRequest $request) // store(Request $myRequestObject) then i use $myRequestObject
     {
         // $data = request()->all();
 
         // we can use our request ->make:request <name> and adding the message and rules
 
-        $request->validate([
-            "title" => ['required', 'min:3'],
-            "description" => ['required', 'min:5'],
-            "user_id" => ['required'],
-        ], [
-            "title.required" => 'watch out the title is required'
-        ]);
+        // $request->validate([
+        //     "title" => ['required', 'min:3'],
+        //     "description" => ['required', 'min:5'],
+        //     "user_id" => ['required'],
+        // ], [
+        //     "title.required" => 'watch out the title is required'
+        // ]);
         Post::create([
             'title' => $request->title,
             'description' => $request->description,

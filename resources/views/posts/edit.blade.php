@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('body-content')
+@section('content')
 
 <form action="{{route('posts.update',['id'=>$post->id])}}" method="post">
     @method('Put')

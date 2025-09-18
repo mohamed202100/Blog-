@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('body-content')
+@section('content')
 
 <div class="card">
   <div class="card-header">
