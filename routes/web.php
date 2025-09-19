@@ -18,6 +18,8 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->where('id', '[0-9]+'
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit')->middleware('auth');
 Route::Put('/posts/{id}', [PostController::class, 'update'])->name('posts.update')->middleware('auth');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
+Route::delete('/posts/soft/{id}', [PostController::class, 'delete_soft'])->name('posts.soft')->middleware('auth');
+Route::get('/deleteSoft/{id}', [PostController::class, 'restore'])->name('restore')->middleware('auth');
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

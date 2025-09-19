@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        $posts = Post::paginate(2);
+        $posts = Post::withTrashed()->paginate(5);
         return view(
             'posts.index',
             ['posts' => $posts],
@@ -82,7 +88,23 @@ class PostController extends Controller
 
     public function destroy($id)
     {
+        Post::where('id', '=', $id)->forceDelete();
+
+        //Post::destroy($id);
+        return redirect()->route('posts.index');
+    }
+
+    public function delete_soft($id)
+    {
         Post::findOrFail($id)->delete();
+
+        //Post::destroy($id);
+        return redirect()->route('posts.index');
+    }
+
+    public function restore($id)
+    {
+        Post::where('id', '=', $id)->restore();
 
         //Post::destroy($id);
         return redirect()->route('posts.index');
