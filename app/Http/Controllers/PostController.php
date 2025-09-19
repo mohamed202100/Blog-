@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(2);
         return view(
             'posts.index',
             ['posts' => $posts],
@@ -71,7 +71,7 @@ class PostController extends Controller
 
     public function update(Request $req, $id)
     {
-        $post  = Post::find($id);
+        $post = Post::findOrFail($id);
         $post->title = $req->title;
         $post->description = $req->description;
         $post->user_id = $req->user_id;
@@ -82,7 +82,9 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        Post::destroy($id);
+        Post::findOrFail($id)->delete();
+
+        //Post::destroy($id);
         return redirect()->route('posts.index');
     }
 }
